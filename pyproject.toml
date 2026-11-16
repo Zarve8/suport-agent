@@ -1,0 +1,41 @@
+[project]
+name = "copilot-support-agent"
+version = "0.1.0"
+requires-python = ">=3.14"
+dependencies = [
+    "langchain>=1.0.0,<2.0.0",
+    "langchain-community>=0.4.0,<1.0.0",
+    "rank-bm25>=0.2.2,<1.0.0",
+    "langchain-openai>=1.0.0,<2.0.0",
+    "langgraph>=1.0.0,<2.0.0",
+    "langchain-text-splitters>=1.0.0,<2.0.0",
+    "nemoguardrails>=0.16.0,<1.0.0",
+    "pydantic-settings>=2.0.0,<3.0.0",
+    "python-dotenv>=1.0.0,<2.0.0",
+    "streamlit>=1.40.0,<2.0.0",
+]
+
+[build-system]
+requires = ["uv_build>=0.12.3,<0.13.0"]
+build-backend = "uv_build"
+
+
+[tool.uv.build-backend]
+module-name = "app"
+module-root = ""
+
+[tool.pytest.ini_options]
+addopts = "--tb=short"
+asyncio_mode = "auto"
+asyncio_default_fixture_loop_scope = "function"
+asyncio_default_test_loop_scope = "session"
+markers = [
+    "llm: test uses the configured OpenAI model and API credits",
+]
+
+[dependency-groups]
+dev = [
+    "pytest>=9.2.0",
+    "pytest-asyncio>=1.5.0",
+    "pytest-xdist>=3.6.0,<4.0.0",
+]
